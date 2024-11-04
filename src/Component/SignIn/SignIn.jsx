@@ -4,9 +4,12 @@ import { authContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const SignIn = () => {
-    const { signinAcount, githubauthentication } = useContext(authContext)
+    const { signinAcount, githubauthentication, googleauthentication } = useContext(authContext)
     const hendlegithub = () => {
         githubauthentication()
+    }
+    const hendlegoogle = () => {
+        googleauthentication()
     }
     const heldleSignIN = e => {
         e.preventDefault()
