@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { authContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
+    const { signupAccount } = useContext(authContext)
+
+
     const heldleSignUp = e => {
         e.preventDefault()
         const base = e.target
@@ -9,7 +14,22 @@ const Signup = () => {
         const password = base.password.value
         const getUser = { email, password }
         console.log(getUser);
+        signupAccount(email, password)
+            .then(result => {
+                console.log(result);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'SignUp Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
+
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
