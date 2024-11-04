@@ -11,6 +11,7 @@ import ErrorPage from './Component/ErrorPage/ErrorPage.jsx';
 import AllTourists from './Component/AllTourists/AllTourists.jsx';
 import AddTourists from './Component/AddTourists/AddTourists.jsx';
 import MyList from './Component/MyList/MyList.jsx';
+import Home from './Component/Home/Home.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     element: <Root></Root>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
       {
         path: '/alltourists',
         element: <AllTourists></AllTourists>
