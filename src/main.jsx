@@ -14,6 +14,7 @@ import MyList from './Component/MyList/MyList.jsx';
 import Home from './Component/Home/Home.jsx';
 import SignIn from './Component/SignIn/SignIn.jsx';
 import Signup from './Component/Signup/Signup.jsx';
+import AuthProvider from './Component/Provider/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,6 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup></Signup>
-
       },
     ]
   }
@@ -53,6 +53,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
