@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { authContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const Signup = () => {
     const { signupAccount } = useContext(authContext)
+    const [showPassword, setShowPassword] = useState(false);
 
 
     const heldleSignUp = e => {
@@ -29,6 +32,10 @@ const Signup = () => {
                 console.log(error);
             })
     }
+    const togglePasswordVisibility = e => {
+        e.preventDefault();
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div>
@@ -49,10 +56,22 @@ const Signup = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                <div className='relative flex items-center'>
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        name='password'
+                                        placeholder="password"
+                                        className="input input-bordered w-full"
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        className='absolute right-3'
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                                    </button>
+                                </div>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">SignUp</button>

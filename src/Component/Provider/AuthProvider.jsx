@@ -1,12 +1,35 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../Firebase/Firebase.config';
+import { GithubAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider } from 'firebase/auth/web-extension';
 
 export const authContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [users, setusers] = useState(null)
     const [loadding, setloadding] = useState(true)
+    const provider = new GithubAuthProvider();
+    const githubauthentication = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+    const googleProvider = new GoogleAuthProvider
+    const googleauthentication = () => {
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+
+    }
 
     const signupAccount = (email, password) => {
         setloadding(true)
@@ -18,6 +41,10 @@ const AuthProvider = ({ children }) => {
         setloadding(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
+    const logoutUser = () => {
+        setloadding(true)
+        return signOut(auth);
+    };
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, current => {
@@ -37,6 +64,9 @@ const AuthProvider = ({ children }) => {
         loadding,
         signupAccount,
         signinAcount,
+        logoutUser,
+        githubauthentication,
+        googleauthentication,
     }
     return (
         <authContext.Provider value={shareData}>
