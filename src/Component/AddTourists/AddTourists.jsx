@@ -1,5 +1,5 @@
-import React from 'react';
-import { TbPicnicTable } from 'react-icons/tb';
+import Swal from "sweetalert2";
+
 
 const AddTourists = () => {
     const hendleFrom = e => {
@@ -16,6 +16,25 @@ const AddTourists = () => {
         const url = base.url.value
         const users = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url }
         console.log(users);
+
+        fetch('http://localhost:4000/journey', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(users)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your Spot Add to database',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+            })
+            
     }
     return (
         <div className='bg-pink-800 p-10'>
