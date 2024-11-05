@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Tourists = ({ tour }) => {
-    const { _id, spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating } = tour
-
-
+const Listed = ({ list }) => {
+    const { _id, spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating } = list
 
     const wordsArray = shortDes.split(' ');
     // Get the first 20 words
@@ -28,14 +26,14 @@ const Tourists = ({ tour }) => {
                             <p>Cost : {averageCost}</p>
                         </div>
                     </div>
-                    <p className='mt-2'>{initialWords}....</p>
+                    <p className='mt-2'>{initialWords}....</p> 
                     <div className="card-actions justify-end">
-                        <Link to={`/viewAll/${_id}`}><button className="btn btn-primary">View Details</button></Link>
+                        <Link to={`/updatedelete/${_id}`}><button className="btn btn-primary">View Details</button></Link>
                     </div>
                 </div>
             </div>
         </div>
-    ); 
+    );
 };
 
-export default Tourists;
+export default Listed;

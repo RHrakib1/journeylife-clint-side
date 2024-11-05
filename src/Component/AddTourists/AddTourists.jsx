@@ -1,8 +1,12 @@
 import Swal from "sweetalert2";
+import { authContext } from "../Provider/AuthProvider";
+import { useContext } from "react";
 
 
 const AddTourists = () => {
+    const { users } = useContext(authContext)
     const hendleFrom = e => {
+        console.log(console.log('this is user section'), users);
         e.preventDefault()
         const base = e.target
         const spotName = base.spotName.value
@@ -15,15 +19,16 @@ const AddTourists = () => {
         const seasonality = base.seasonality.value
         const totalvisit = base.totalvisit.value
         const url = base.url.value
-        const users = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating }
-        console.log(users);
+        const email = users.email
+        const usersData = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating, email }
+        console.log(usersData);
 
         fetch('http://localhost:4000/journey', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(users)
+            body: JSON.stringify(usersData)
         })
             .then(res => res.json())
             .then(data => {

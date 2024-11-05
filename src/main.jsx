@@ -17,6 +17,7 @@ import Signup from './Component/Signup/Signup.jsx';
 import AuthProvider from './Component/Provider/AuthProvider.jsx';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute.jsx';
 import ViewAll from './Component/AllTourists/ViewAll.jsx';
+import UpdateDelete from './Component/UpdateDelete/UpdateDelete.jsx';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup></Signup>
       },
+      {
+        path:"/updatedelete/:id",
+        element:<UpdateDelete></UpdateDelete>,
+        loader: ({ params }) => fetch(`http://localhost:4000/alltourists/${params.id}`),
+      }
     ]
   }
 
