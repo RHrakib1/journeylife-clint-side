@@ -10,11 +10,12 @@ const AddTourists = () => {
         const averageCost = base.averageCost.value
         const travleTime = base.travleTime.value
         const countryName = base.countryName.value
-        const shortDes = base.shortDes.value
+        const shortDes = base.description.value
+        const rating = base.rating.value
         const seasonality = base.seasonality.value
         const totalvisit = base.totalvisit.value
         const url = base.url.value
-        const users = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url }
+        const users = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating }
         console.log(users);
 
         fetch('http://localhost:4000/journey', {
@@ -32,9 +33,9 @@ const AddTourists = () => {
                     text: 'Your Spot Add to database',
                     icon: 'success',
                     confirmButtonText: 'Cool'
-                  })
+                })
             })
-            
+
     }
     return (
         <div className='bg-pink-800 p-10'>
@@ -78,9 +79,9 @@ const AddTourists = () => {
                         </div>
                         <div>
                             <label className="label">
-                                <span className="label-text text-xl">short description</span>
+                                <span className="label-text text-xl">Rating</span>
                             </label>
-                            <input type="text" placeholder="short description" name='shortDes' className="input input-bordered w-full " />
+                            <input type="text" placeholder="rating" name='rating' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
@@ -101,6 +102,16 @@ const AddTourists = () => {
                         <span className="label-text text-xl">image</span>
                     </label>
                     <input type="text" placeholder="URL" name='url' className="input input-bordered w-full " />
+                </div>
+                <div>
+                    <label className="label">
+                        <span className="label-text text-xl">Description</span>
+                    </label>
+                    <textarea
+                        placeholder="Enter description"
+                        name='description'
+                        className="textarea textarea-bordered w-full"
+                    />
                 </div>
                 <input type="submit" value='Add spot' className='btn btn-block mt-4' style={{ backgroundColor: 'black', color: 'white' }} />
             </form>

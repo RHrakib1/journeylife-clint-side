@@ -16,6 +16,7 @@ import SignIn from './Component/SignIn/SignIn.jsx';
 import Signup from './Component/Signup/Signup.jsx';
 import AuthProvider from './Component/Provider/AuthProvider.jsx';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute.jsx';
+import ViewAll from './Component/AllTourists/ViewAll.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/alltourists',
-        element: <AllTourists></AllTourists>
+        element: <AllTourists></AllTourists>,
+        loader: () => fetch('http://localhost:4000/journey')
+
+      },
+      {
+        path: '/viewAll/:id',
+        element: <ViewAll></ViewAll>,
+        loader: ({ params }) => fetch(`http://localhost:4000/alltourists/${params.id}`),
+        
       },
       {
         path: '/addtourists',
