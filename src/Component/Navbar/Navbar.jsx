@@ -1,9 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { authContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
     const { users, logoutUser } = useContext(authContext)
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        const newDarkMode = !darkMode;
+        setDarkMode(newDarkMode);
+        if (newDarkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    };
+    console.log('Dark Mode:', darkMode);
+    console.log('Document HTML class list:', document.documentElement.classList);
+
+
 
 
 
@@ -55,7 +70,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <label className="swap swap-rotate">
                         {/* this hidden checkbox controls the state */}
-                        <input type="checkbox" />
+                        <input type="checkbox" onChange={toggleDarkMode} checked={darkMode} />
 
                         {/* sun icon */}
                         <svg
@@ -98,7 +113,7 @@ const Navbar = () => {
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li>
                                 <a className="justify-between">
-                                    {users?.displayName || 'this is found'} 
+                                    {users?.displayName || 'this is found'}
                                 </a>
                             </li>
                             <button onClick={hendlelogoutuser}><li><a>Logout</a></li></button>

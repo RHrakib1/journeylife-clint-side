@@ -1,11 +1,12 @@
-import Swal from "sweetalert2";
-import { authContext } from "../Provider/AuthProvider";
-import { useContext } from "react";
+import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
+const Update = () => {
+    const up = useLoaderData()
+    const { _id, spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating } = up
 
 
-const AddTourists = () => {
-    const { users } = useContext(authContext)
-    const hendleFrom = e => {
+    const hendleUpdate = e => {
         e.preventDefault()
         const base = e.target
         const spotName = base.spotName.value
@@ -18,12 +19,11 @@ const AddTourists = () => {
         const seasonality = base.seasonality.value
         const totalvisit = base.totalvisit.value
         const url = base.url.value
-        const email = users.email
-        const usersData = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating, email }
+        const usersData = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating }
         console.log(usersData);
 
-        fetch('http://localhost:4000/journey', {
-            method: "POST",
+        fetch(`http://localhost:4000/update/${_id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -34,7 +34,7 @@ const AddTourists = () => {
                 console.log(data);
                 Swal.fire({
                     title: 'Success!',
-                    text: 'Your Spot Add to database',
+                    text: 'Your Spot has been updated successfully',
                     icon: 'success',
                     confirmButtonText: 'Cool'
                 })
@@ -44,33 +44,33 @@ const AddTourists = () => {
     return (
         <div className='bg-pink-800 p-10'>
             <h1 className='text-4xl font-extrabold'>Add Tourists Spot</h1>
-            <form onSubmit={hendleFrom}>
+            <form onSubmit={hendleUpdate}>
                 <div className='flex gap-10 justify-center'>
                     <div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">Tourists_spot_name</span>
                             </label>
-                            <input type="text" placeholder="spot_name" name='spotName' className="input input-bordered w-full " />
+                            <input type="text" placeholder="spot_name" defaultValue={spotName} name='spotName' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">location</span>
                             </label>
-                            <input type="text" placeholder="location" name='location' className="input input-bordered w-full " />
+                            <input type="text" placeholder="location" defaultValue={location} name='location' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">average_cost
                                 </span>
                             </label>
-                            <input type="text" placeholder="average_cost" name='averageCost' className="input input-bordered w-full " />
+                            <input type="text" placeholder="average_cost" defaultValue={averageCost} name='averageCost' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">travel_time</span>
                             </label>
-                            <input type="text" placeholder="travel_time" name='travleTime' className="input input-bordered w-full " />
+                            <input type="text" placeholder="travel_time" defaultValue={travleTime} name='travleTime' className="input input-bordered w-full " />
                         </div>
 
                     </div>
@@ -79,25 +79,25 @@ const AddTourists = () => {
                             <label className="label">
                                 <span className="label-text text-xl">country_Name</span>
                             </label>
-                            <input type="text" placeholder="country_Name" name='countryName' className="input input-bordered w-full " />
+                            <input type="text" placeholder="country_Name" defaultValue={countryName} name='countryName' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">Rating</span>
                             </label>
-                            <input type="text" placeholder="rating" name='rating' className="input input-bordered w-full " />
+                            <input type="text" placeholder="rating" defaultValue={rating} name='rating' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">seasonality</span>
                             </label>
-                            <input type="text" placeholder="seasonality" name='seasonality' className="input input-bordered w-full " />
+                            <input type="text" placeholder="seasonality" defaultValue={seasonality} name='seasonality' className="input input-bordered w-full " />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-xl">totaVisitorsPerYear</span>
                             </label>
-                            <input type="text" placeholder="totaVisitorsPerYear" name='totalvisit' className="input input-bordered w-full " />
+                            <input type="text" placeholder="totaVisitorsPerYear" name='totalvisit' defaultValue={totalvisit} className="input input-bordered w-full " />
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@ const AddTourists = () => {
                     <label className="label">
                         <span className="label-text text-xl">image</span>
                     </label>
-                    <input type="text" placeholder="URL" name='url' className="input input-bordered w-full " />
+                    <input type="text" placeholder="URL" defaultValue={url} name='url' className="input input-bordered w-full " />
                 </div>
                 <div>
                     <label className="label">
@@ -113,14 +113,14 @@ const AddTourists = () => {
                     </label>
                     <textarea
                         placeholder="Enter description"
-                        name='description'
+                        name='description' defaultValue={shortDes}
                         className="textarea textarea-bordered w-full"
                     />
                 </div>
                 <input type="submit" value='Add spot' className='btn btn-block mt-4' style={{ backgroundColor: 'black', color: 'white' }} />
             </form>
-        </div> 
+        </div>
     );
 };
 
-export default AddTourists;
+export default Update;

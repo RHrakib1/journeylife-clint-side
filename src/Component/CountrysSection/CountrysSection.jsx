@@ -10,6 +10,7 @@ import thiland from "../../../public/img/flag-400.png"
 const CountrysSection = () => {
     return (
         <div>
+            <h2 className="font-bold text-4xl mt-10 mb-5">Spot Countrys</h2>
             <div className='grid md:grid-cols-4 gap-5'>
                 <div className="card bg-cyan-700 shadow-xl">
                     <figure className="px-10 pt-10">

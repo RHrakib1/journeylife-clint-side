@@ -18,6 +18,7 @@ import AuthProvider from './Component/Provider/AuthProvider.jsx';
 import PrivateRoute from './Component/PrivateRoute/PrivateRoute.jsx';
 import ViewAll from './Component/AllTourists/ViewAll.jsx';
 import UpdateDelete from './Component/UpdateDelete/UpdateDelete.jsx';
+import Update from './Component/Update/Update.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,13 @@ const router = createBrowserRouter([
         path: '/viewAll/:id',
         element: <ViewAll></ViewAll>,
         loader: ({ params }) => fetch(`http://localhost:4000/alltourists/${params.id}`),
-        
+
+      },
+      {
+        path: '/update/:id',
+        element: <Update></Update>,
+        loader: ({ params }) => fetch(`http://localhost:4000/update/${params.id}`)
+
       },
       {
         path: '/addtourists',
@@ -58,8 +65,8 @@ const router = createBrowserRouter([
         element: <Signup></Signup>
       },
       {
-        path:"/updatedelete/:id",
-        element:<UpdateDelete></UpdateDelete>,
+        path: "/updatedelete/:id",
+        element: <UpdateDelete></UpdateDelete>,
         loader: ({ params }) => fetch(`http://localhost:4000/alltourists/${params.id}`),
       }
     ]

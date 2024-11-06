@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../Provider/AuthProvider';
 
 const Tourists = ({ tour }) => {
-    const { _id, spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating } = tour
+    const { _id, spotName,  averageCost, travleTime,  shortDes, seasonality, url, rating } = tour
+    const { users } = useContext(authContext)
 
 
 
@@ -27,15 +29,22 @@ const Tourists = ({ tour }) => {
                             <p>Time : {travleTime}</p>
                             <p>Cost : {averageCost}</p>
                         </div>
+
                     </div>
                     <p className='mt-2'>{initialWords}....</p>
+                    {users && (<div className='flex gap-4 mt-3 items-center'>
+                        <img className='rounded-full w-12 h-12' src={users.photoURL} alt="nai" />
+                        <p className='text-xl font-bold'>{users.displayName}</p>
+                    </div>)
+
+                    }
                     <div className="card-actions justify-end">
                         <Link to={`/viewAll/${_id}`}><button className="btn btn-primary">View Details</button></Link>
                     </div>
                 </div>
             </div>
         </div>
-    ); 
+    );
 };
 
 export default Tourists;
