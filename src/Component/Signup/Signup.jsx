@@ -19,6 +19,17 @@ const Signup = () => {
         const photo = base.photo.value
         const getUser = { email, password, name, photo }
         console.log(getUser);
+        // Password validation
+        const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+        if (!passwordPattern.test(password)) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password must be at least 8 characters long, contain a number, an uppercase letter, and a special character.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
         signupAccount(email, password)
             .then(result => {
                 console.log(result);
