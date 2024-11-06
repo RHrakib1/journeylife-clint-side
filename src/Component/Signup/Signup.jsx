@@ -15,7 +15,9 @@ const Signup = () => {
         const base = e.target
         const email = base.email.value
         const password = base.password.value
-        const getUser = { email, password }
+        const name = base.name.value
+        const photo = base.photo.value
+        const getUser = { email, password, name, photo }
         console.log(getUser);
         signupAccount(email, password)
             .then(result => {
@@ -48,9 +50,21 @@ const Signup = () => {
                         <form onSubmit={heldleSignUp} className="card-body">
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" name='name' placeholder="name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo Url</span>
+                                </label>
+                                <input type="text" name='photo' placeholder="URL" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
