@@ -6,7 +6,7 @@ const MyList = () => {
     const { users } = useContext(authContext)
     const [item, setitem] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:4000/mylist/${users?.email}`)
+        fetch(`https://journelife-server-side-38ju0pt3s.vercel.app/mylist/${users?.email}`)
             .then(res => res.json())
             .then(data => setitem(data))
     }, [users])

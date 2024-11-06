@@ -43,6 +43,12 @@ const Signup = () => {
             })
             .catch(error => {
                 console.log(error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: {error},
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                })
             })
     }
     const togglePasswordVisibility = e => {

@@ -22,7 +22,7 @@ const Update = () => {
         const usersData = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating }
         console.log(usersData);
 
-        fetch(`http://localhost:4000/update/${_id}`, {
+        fetch(`https://journelife-server-side-38ju0pt3s.vercel.app/update/${_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

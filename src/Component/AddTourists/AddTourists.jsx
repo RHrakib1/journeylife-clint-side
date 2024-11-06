@@ -22,7 +22,7 @@ const AddTourists = () => {
         const usersData = { spotName, location, averageCost, travleTime, countryName, shortDes, seasonality, totalvisit, url, rating, email }
         console.log(usersData);
 
-        fetch('http://localhost:4000/journey', {
+        fetch('https://journelife-server-side-38ju0pt3s.vercel.app/journey', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -20,7 +20,7 @@ const UpdateDelete = () => {
             // 
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:4000/users/${id}`, {
+                fetch(`https://journelife-server-side-38ju0pt3s.vercel.app/users/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

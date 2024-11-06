@@ -33,19 +33,19 @@ const router = createBrowserRouter([
       {
         path: '/alltourists',
         element: <AllTourists></AllTourists>,
-        loader: () => fetch('http://localhost:4000/journey')
+        loader: () => fetch('https://journelife-server-side-38ju0pt3s.vercel.app/journey')
 
       },
       {
         path: '/viewAll/:id',
         element: <ViewAll></ViewAll>,
-        loader: ({ params }) => fetch(`http://localhost:4000/alltourists/${params.id}`),
+        loader: ({ params }) => fetch(`https://journelife-server-side-38ju0pt3s.vercel.app/alltourists/${params.id}`),
 
       },
       {
         path: '/update/:id',
         element: <Update></Update>,
-        loader: ({ params }) => fetch(`http://localhost:4000/update/${params.id}`)
+        loader: ({ params }) => fetch(`https://journelife-server-side-38ju0pt3s.vercel.app/update/${params.id}`)
 
       },
       {
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
       {
         path: "/updatedelete/:id",
         element: <UpdateDelete></UpdateDelete>,
-        loader: ({ params }) => fetch(`http://localhost:4000/alltourists/${params.id}`),
+        loader: ({ params }) => fetch(`https://journelife-server-side-38ju0pt3s.vercel.app/alltourists/${params.id}`),
       }
     ]
   }
